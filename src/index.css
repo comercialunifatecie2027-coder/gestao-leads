@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { -webkit-text-size-adjust: 100%; }
+  body { @apply bg-slate-50 text-slate-800 antialiased; font-feature-settings: 'tnum' 1; }
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+}
+
+@layer components {
+  .card { @apply rounded-2xl border border-slate-200/80 bg-white shadow-card; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50; }
+  .btn-primario { @apply btn bg-brand-500 text-white shadow-sm hover:bg-brand-600; }
+  .btn-secundario { @apply btn border border-slate-200 bg-white text-slate-700 hover:bg-slate-50; }
+  .btn-perigo { @apply btn bg-red-600 text-white hover:bg-red-700; }
+  .btn-fantasma { @apply btn px-2.5 text-slate-600 hover:bg-slate-100; }
+  .campo { @apply w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-800 placeholder:text-slate-400 transition focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-100 disabled:bg-slate-50 disabled:text-slate-500; }
+  .rotulo { @apply mb-1.5 block text-xs font-semibold uppercase tracking-wide text-slate-500; }
+  .tabela th { @apply whitespace-nowrap px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500; }
+  .tabela td { @apply px-4 py-3 text-sm; }
+}
+
+@keyframes entrar { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* Impressão de relatórios */
+@media print {
+  @page { size: A4 landscape; margin: 12mm; }
+  body { background: #fff !important; }
+  .no-print { display: none !important; }
+  .print-full { margin: 0 !important; padding: 0 !important; width: 100% !important; max-width: none !important; }
+  .card { box-shadow: none !important; break-inside: avoid; }
+  .print-break { break-before: page; }
+  .so-print { display: block !important; }
+}
+.so-print { display: none; }
